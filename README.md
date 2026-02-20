@@ -31,3 +31,13 @@ python3 -m http.server 4173
 
 - `index.html`: shell da SPA, carrega React, Tailwind, Babel e monta a app.
 - `EliteTrainingTracker.jsx`: componente único com toda a lógica e UI.
+
+## Troubleshooting (ecrã preto)
+
+Se aparecer apenas fundo preto sem conteúdo:
+
+1. Verifica no browser se aparece uma caixa de erro de carregamento.
+2. Confirma internet ativa (a app usa CDNs).
+3. Desativa bloqueador de conteúdo/ad blocker para `127.0.0.1`.
+4. Faz hard refresh (`Cmd + Shift + R`).
+5. Testa noutra rede (por exemplo hotspot do telemóvel).

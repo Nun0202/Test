@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elite CrossFit Tracker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -19,14 +19,48 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-black">
     <div id="root"></div>
 
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel" src="./EliteTrainingTracker.jsx"></script>
+    <script>
+      window.__appLoadErrors = [];
+      function registerScriptError(name) {
+        return function () {
+          window.__appLoadErrors.push(name);
+        };
+      }
+    </script>
+    <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" onerror="registerScriptError('react')()"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" onerror="registerScriptError('react-dom')()"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.26.10/babel.min.js" onerror="registerScriptError('babel')()"></script>
+    <script type="text/babel" src="./EliteTrainingTracker.jsx" onerror="registerScriptError('tracker-component')()"></script>
+
+    <script>
+      setTimeout(() => {
+        const root = document.getElementById('root');
+        if (!root || root.children.length > 0) return;
+        const errors = window.__appLoadErrors.length ? window.__appLoadErrors.join(', ') : 'desconhecido';
+        root.innerHTML = `
+          <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#000;color:#e5e7eb;font-family:Inter,system-ui,sans-serif;padding:24px;text-align:left;">
+            <div style="max-width:760px;border:1px solid #3f3f46;background:#111827;padding:20px;border-radius:12px;">
+              <h1 style="margin:0 0 12px 0;color:#22d3ee;font-size:20px;">Erro ao carregar a aplicação</h1>
+              <p style="margin:0 0 8px 0;">Alguns scripts externos não carregaram: <strong>${errors}</strong>.</p>
+              <p style="margin:0 0 8px 0;">Passos rápidos:</p>
+              <ol style="margin:0;padding-left:18px;line-height:1.6;">
+                <li>Verifica internet no computador.</li>
+                <li>Desativa ad-block/content blocker para este URL.</li>
+                <li>Faz hard refresh (Cmd + Shift + R).</li>
+                <li>Tenta outra rede (ex: hotspot).</li>
+              </ol>
+            </div>
+          </div>
+        `;
+      }, 1200);
+    </script>
   </body>
 </html>
